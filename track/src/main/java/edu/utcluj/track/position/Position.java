@@ -32,7 +32,7 @@ public class Position {
     @Column(name = "creation_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @ApiModelProperty(hidden = true)
     @JsonIgnore
-    private Date createTime;
+    private LocalDateTime createTime;
 
     @NotNull
     private String latitude;
@@ -56,11 +56,11 @@ public class Position {
         this.terminalId = terminalId;
     }
 
-    public Date getCreateTime() {
+    public LocalDateTime getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(LocalDateTime createTime) {
         this.createTime = createTime;
     }
 

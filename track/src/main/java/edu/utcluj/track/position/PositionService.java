@@ -3,6 +3,8 @@ package edu.utcluj.track.position;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -14,39 +16,12 @@ public class PositionService {
     @Autowired
     private PositionRepository positionRepository;
 
-    //String terminalId
-    //, Date startDate, Date endDate
     public List<Position> readPosition() { return positionRepository.findAll(); }
 
-    public Position readPositionFromTerminal(String terminalId) { return positionRepository.findByTerminalId(terminalId); }
+    public List<Position> readPositionFromTerminal(String terminalId, LocalDateTime startDate, LocalDateTime endDate) { return positionRepository.findByTerminalId(terminalId,startDate,endDate); }
 
-    public Position createPositionService(Position p){return positionRepository.save(p);}
+    public Position save(Position p){return positionRepository.save(p);}
 
-    public void updatePositionService(Position p){
-        positionRepository.updatePosition(p.getTerminalId(),p.getLongitude(),p.getLatitude());
-    }
-
-    public void deletePositionService(String terminalId){
-        positionRepository.delete(terminalId);}
-
-
-
-
-    //    public Position readPosition(Position position) {
-//        return positionRepository.findOne(position.getId());
-//    }
-//
-//    public Position updatePosition(Position position, long id) {
-//
-//        Position newPosition = positionRepository.findOne(id);
-//        newPosition.setLatitude("12");
-//        return positionRepository.save(newPosition);
-//    }
-//
-//    public void deletePosition(Position position) {
-//        positionRepository.delete(position.getId());
-//    }
-
-
-
+    public void deletePositionService(Long id){
+        positionRepository.delete(id);}
 }

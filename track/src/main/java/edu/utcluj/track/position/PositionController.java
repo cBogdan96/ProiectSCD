@@ -5,6 +5,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -20,36 +29,42 @@ public class PositionController {
     //value = "/{terminalId}"
     //@PathVariable("terminalId") String terminalId
 
-    @RequestMapping( method = RequestMethod.GET)
+    @RequestMapping(  value = "/all", method = RequestMethod.GET)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Position> read() {
 
         return positionService.readPosition();
     }
 
-    @RequestMapping(value = "/{terminalId}", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     @Produces(MediaType.APPLICATION_JSON)
-    public Position readPositionFromTerminal(@PathVariable("terminalId") String terminalId) {
-        return positionService.readPositionFromTerminal(terminalId);
+    public List<Position> readPositionFromTerminal(@RequestParam("terminalId") String terminalId , @RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate) throws ParseException {
+        LocalDateTimeConverter localDateTimeConverter = new LocalDateTimeConverter("yyyy-MM-dd HH:mm:ss");
+
+        LocalDateTime sdate = localDateTimeConverter.convert(startDate);
+        LocalDateTime edate = localDateTimeConverter.convert(endDate);
+        return positionService.readPositionFromTerminal(terminalId,sdate,edate);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Produces(MediaType.APPLICATION_JSON)
     public Position createPosition(@RequestBody Position p) {
-        return positionService.createPositionService(p);
+        return positionService.save(p);
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.PUT)
     @Produces(MediaType.APPLICATION_JSON)
     public void  updatePosition(@RequestBody Position p) {
-        positionService.updatePositionService(p);
+        if(p.getId() == null)
+            throw new IllegalArgumentException("The id is mandatory for UPDATE!");
+        positionService.save(p);
     }
 
 
-    @RequestMapping(value = "/delete/{terminalId}",method = RequestMethod.DELETE)
+    @RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
     @Produces(MediaType.APPLICATION_JSON)
-    public void delete(@RequestBody String  terminalId) {
-        positionService.deletePositionService(terminalId);
+    public void delete(@PathVariable Long  id) {
+        positionService.deletePositionService(id);
     }
 
 }
