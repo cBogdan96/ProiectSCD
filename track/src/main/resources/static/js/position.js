@@ -28,7 +28,10 @@ function Criteria() {
 }
 
 function getPositionsSuccessHandler(respData) {
-    $("#result").append("<br>" + JSON.stringify(respData));
+    for(var i in respData)
+        addMarker({lat:parseFloat(respData[i].latitude) ,lng: parseFloat(respData[i].longitude)})
+
+    // $("#result").append("<br>" + JSON.stringify(respData));
     //$("#result").text(respData); // appends the json to the 'result' div. see index.html
 }
 

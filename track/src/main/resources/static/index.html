@@ -3,9 +3,25 @@
 <head lang="en">
     <meta charset="UTF-8">
     <title>Admin Application Sketch</title>
+
+    <style>
+        #map {
+            width: 500px;
+            height: 400px;
+            align-content: center;
+        }
+    </style>
+
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="js/common.js"></script>
     <script src="js/position.js"></script>
+    <script src="js/map.js"></script>
+    <script>
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+
 </head>
 <body>
 <h1 align="center">Admin Application Sketch</h1>
@@ -14,11 +30,13 @@
     <table align="center">
         <tr>
             <td><b>Device Id</b></td>
-            <td><input type="text" id="deviceId" size="35" value="1" class="regular_input"></td>
+            <td><input type="text" id="deviceId" size="35" value="1" class="regular_input"
+                       onkeydown="if (event.keyCode == 13) getPositions()"></td>
         </tr>
         <tr>
             <td><b>Start Date</b></td>
-            <td><input type="text" id="startDate" size="35" value="2015-01-01 23:00:00"></td>
+            <td><input type="text" id="startDate" size="35" value="2015-01-01 23:00:00"
+                       onkeydown="if (event.keyCode == 13) getPositions()"></td>
         </tr>
         <tr>
             <td><b>End Date</b></td>
@@ -29,17 +47,19 @@
             <td><br></td>
             <td><br></td>
         </tr>
-        <tr>
-            <td align="left"><input type="button" id="get_positions_button" size="35" value="Get Positions"
+        <tr align="center">
+            <td align="center"><input type="button" align="center" id="get_positions_button" size="35" value="Get Positions"
                                     onclick=getPositions()></td>
-            <td align="right"><input type="button" name="show_static_position" size="35" value="Show on Map"
-                                     onclick=goToPage('map.html')></td>
         </tr>
+        <tr>
+            <td><br></td>
+            <td><br></td>
+        </tr>
+        <tr><div align="center" id="map"/></tr>
     </table>
 </div>
 
-<div id="result" align="center">
-    <h2>Results will be printed here</h2>
-</div>
+
+
 </body>
 </html>

@@ -19,8 +19,8 @@ function initialize() {
     map = new google.maps.Map(mapCanvas, mapOptions)
 }
 
-function addStaticMarker() {
-    var pos = getRandomPosition()
+function addMarker(pos) {
+    // var positions = getPositions()
     var marker = new google.maps.Marker({
         position: pos,
         map: map,
@@ -32,4 +32,11 @@ function getRandomPosition(){
     var randLatLng = {lat: (myLatLng["lat"] + Math.floor(Math.random() * 5) + 1),
         lng: (myLatLng["lng"] + Math.floor(Math.random() * 5) + 1)};
     return randLatLng;
+}
+
+function getLatitudeAndLongitude() {
+
+
+
+
 }

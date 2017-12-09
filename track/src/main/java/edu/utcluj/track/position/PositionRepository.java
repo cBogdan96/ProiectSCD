@@ -16,8 +16,13 @@ import java.util.List;
  */
 public interface PositionRepository extends JpaRepository<Position, Long> {
 
-   @Query(value = "select p FROM Position p where p.terminalId = ?0 AND  p.createTime>= ?1 AND p.createTime<=?2")
-   List<Position> findByTerminalId(String terminalId, LocalDateTime startDate, LocalDateTime endDate);
+//   @Query("select p FROM Position p where p.terminalId = :terminalId" + " AND  p.createTime BETWEEN :startDate AND :endDate")
+//   List<Position> findByTerminalId(@Param("terminalId")String terminalId,@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+   @Query("SELECT p FROM Position p WHERE p.terminalId = :terminalid" +
+           " AND p.createTime BETWEEN :startdate AND :enddate")
+   List<Position> findByTerminalIdAndStartDateAndEndDate(@Param("terminalid") String terminalid, @Param("startdate") Date startDate,
+                                                         @Param("enddate") Date endDate);
 
 //   @Transactional
 //   @Modifying

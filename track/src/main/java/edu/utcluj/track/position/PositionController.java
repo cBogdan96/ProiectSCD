@@ -43,7 +43,11 @@ public class PositionController {
 
         LocalDateTime sdate = localDateTimeConverter.convert(startDate);
         LocalDateTime edate = localDateTimeConverter.convert(endDate);
-        return positionService.readPositionFromTerminal(terminalId,sdate,edate);
+
+        Date stDate = new Date(Timestamp.valueOf(sdate).getTime());
+        Date enDate = new Date(Timestamp.valueOf(edate).getTime());
+
+        return positionService.readPositionFromTerminal(terminalId,stDate,enDate);
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
