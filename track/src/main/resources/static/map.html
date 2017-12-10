@@ -1,37 +1,106 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
+    <title>Maps</title>
     <meta charset="UTF-8">
-    <title>The Map</title>
-    <style>
-        #map {
-            width: 500px;
-            height: 400px;
-            align-content: center;
-        }
-    </style>
+
+    <!--<style>-->
+        <!--#map {-->
+            <!--width: 500px;-->
+            <!--height: 300px;-->
+            <!--align-content: center;-->
+        <!--}-->
+    <!--</style>-->
+
     <script src="https://maps.googleapis.com/maps/api/js"></script>
-    <script src="js/map.js"></script>
-    <script src="js/common.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="js/common.js"></script>
+    <script src="js/position.js"></script>
+    <script src="js/map.js"></script>
+
+    <!--<link rel="stylesheet" href="css/style.css">-->
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Font Awesome & Pixeden Icon Stroke icon font-->
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/pe-icon-7-stroke.css">
+
+    <!-- lightbox-->
+    <link rel="stylesheet" href="css/lightbox.min.css">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="css/style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="css/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="favicon.png">
+    <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+
     <script>
         google.maps.event.addDomListener(window, 'load', initialize);
     </script>
+
+
 </head>
 <body>
-<h1 align="center">The Map Test</h1>
-<br>
 
-<table align="left">
-    <tr>
-        <td><input type="button" id="add_marker" size="35" value="Place Static Marker"
-                   onclick=addStaticMarker()></td>
-        <td><input type="button" id="go_home" size="35" value="Back"
-                   onclick=goToPage('index.html')></td>
-    </tr>
-</table>
-<br>
-<br>
-<div align="center" id="map"/>
+<!-- navbar-->
+<header class="header">
+    <div role="navigation" class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header"><a href="index.html" class="navbar-brand">Maps by Covrig Bogdan</a>
+                <div class="navbar-buttons">
+                    <button type="button" data-toggle="collapse" data-target=".navbar-collapse" class="navbar-toggle navbar-btn">Menu<i class="fa fa-align-justify"></i></button>
+                </div>
+            </div>
+            <div id="navigation" class="collapse navbar-collapse navbar-right">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="index.html">Home</a></li>
+                    <li><a href="map.html">Map page</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+4
+<div id align="center">
+    <table align="center">
+        <tr>
+            <td><b>Device Id</b></td>
+            <td><input type="text" id="deviceId" size="35" value="1" class="regular_input"
+                       onkeydown="if (event.keyCode == 13) getPositions()"></td>
+        </tr>
+        <tr>
+            <td><b>Start Date</b></td>
+            <td><input type="text" id="startDate" size="35" value="2015-01-01 23:00:00"
+                       onkeydown="if (event.keyCode == 13) getPositions()"></td>
+        </tr>
+        <tr>
+            <td><b>End Date</b></td>
+            <td><input type="text" id="endDate" size="35" value="2018-01-02 23:00:00"
+                       onkeydown="if (event.keyCode == 13) getPositions()"></td>
+        </tr>
+        <tr>
+            <td><br></td>
+            <td><br></td>
+        </tr>
+        <tr align="center">
+            <td align="center"><input type="button" align="center" id="get_positions_button" size="35" value="Get Positions"
+                                      onclick=getPositions()></td>
+        </tr>
+        <tr>
+            <td><br></td>
+            <td><br></td>
+        </tr>
+        <tr><div align="center" id="map"/></tr>
+    </table>
+</div>
+
+
+
 </body>
 </html>
