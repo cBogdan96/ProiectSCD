@@ -28,6 +28,10 @@ function Criteria() {
 }
 
 function getPositionsSuccessHandler(respData) {
+    if(markerArray.length){
+        removeMarker();
+    }
+
     for(var i in respData)
         addMarker({lat:parseFloat(respData[i].latitude) ,lng: parseFloat(respData[i].longitude)})
 

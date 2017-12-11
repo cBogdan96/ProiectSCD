@@ -43,6 +43,19 @@
     </script>
 
 
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link href="https://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" rel="stylesheet" type="text/css">
+
+    <script>
+        $( function() {
+            $( "#startDate" ).datepicker({ dateFormat: "yy-mm-dd" });
+        } );
+        $( function() {
+            $( "#endDate" ).datepicker({ dateFormat: "yy-mm-dd" });
+        } );
+    </script>
+
 </head>
 <body>
 
@@ -90,6 +103,8 @@
         </tr>
         <tr align="center">
             <td align="center"><input type="button" align="center" id="get_positions_button" size="35" value="Get Positions"
+                                      onclick=getPositions()></td>
+            <td align="center"><input type="button" align="center" id="get_route_button" size="35" value="Get Route"
                                       onclick=getPositions()></td>
         </tr>
         <tr>

@@ -7,6 +7,7 @@
  */
 var map;
 var myLatLng = {lat: 46.7693924, lng: 23.5902006};
+var markerArray = [];
 
 function initialize() {
     var mapCanvas = document.getElementById('map');
@@ -98,18 +99,17 @@ function addMarker(pos) {
         icon: markerImage
     });
 
+    markerArray.push(marker);
 
 }
+
+function removeMarker(){
+    while(markerArray.length) { markerArray.pop().setMap(null); }
+}
+
 
 function getRandomPosition(){
     var randLatLng = {lat: (myLatLng["lat"] + Math.floor(Math.random() * 5) + 1),
         lng: (myLatLng["lng"] + Math.floor(Math.random() * 5) + 1)};
     return randLatLng;
-}
-
-function getLatitudeAndLongitude() {
-
-
-
-
 }

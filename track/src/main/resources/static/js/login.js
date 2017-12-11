@@ -25,7 +25,7 @@ function Criteria() {
 
 function getUserSuccessHandler(respData) {
     var rData = JSON.stringify(respData);
-    if(rData == true){
+    if(rData){
        goToPage('map.html')
     }else{
         goToPage('index.html')
