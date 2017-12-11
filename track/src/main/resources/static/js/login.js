@@ -7,20 +7,7 @@
  */
 function checkUser() {
     var criteria = new Criteria();
-    jQuery.ajax({
-        type: 'post',
-        url: "http://localhost:8085/" + "user?" + $.param(criteria),
-        data: null,
-        accepts: "application/json",
-
-        success: function (data, status, jqXHR) {
-            getUserSuccessHandler(data);
-        },
-
-        error: function (jqXHR, status) {
-            getUserErrorHandler(status);
-        }
-    });
+    sendRequest("POST", "user?" + $.param(criteria), null, getUserSuccessHandler, getUserErrorHandler);
     // sendRequest("GET", "user?" + $.param(criteria), null, getUserSuccessHandler, getUserErrorHandler);
 }
 
@@ -37,8 +24,12 @@ function Criteria() {
 }
 
 function getUserSuccessHandler(respData) {
+    var rData = JSON.stringify(respData);
+    if(rData == true){
        goToPage('map.html')
-
+    }else{
+        goToPage('index.html')
+    }
     // $("#result").append("<br>" + JSON.stringify(respData));
     //$("#result").text(respData); // appends the json to the 'result' div. see index.html
 }

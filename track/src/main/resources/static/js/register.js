@@ -7,21 +7,7 @@
  */
 function registerUser() {
     var criteria = new registerCriteria();
-    jQuery.ajax({
-        type: 'put',
-        url: "http://localhost:8085/" + "user/register?" + $.param(criteria),
-        data: null,
-        accepts: "application/json",
-
-        success: function (data, status, jqXHR) {
-            getUserRegisterSuccessHandler(data);
-        },
-
-        error: function (jqXHR, status) {
-            getUserRegisterErrorHandler(status);
-        }
-    });
-    // sendRequest("GET", "user?" + $.param(criteria), null, getUserSuccessHandler, getUserErrorHandler);
+    sendRequest("PUT", "user/register?" + $.param(criteria),null,getUserRegisterSuccessHandler,getUserRegisterErrorHandler)
 }
 
 function registerCriteria() {

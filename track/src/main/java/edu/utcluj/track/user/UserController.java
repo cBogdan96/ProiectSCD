@@ -23,9 +23,13 @@ public class UserController {
     UserService userService;
 
     @RequestMapping(method = RequestMethod.POST)
-    public User readPositionFromTerminal(final String email, final String password) {
+    public boolean readPositionFromTerminal(final String email, final String password) {
+        if(userService.findByEmailAndPassword(email,password)!=null){
+            return true;
+        }else{
+            return false;
+        }
 
-        return userService.findByEmailAndPassword(email,password);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/register")
