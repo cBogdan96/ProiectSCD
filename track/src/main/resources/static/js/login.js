@@ -7,7 +7,7 @@
  */
 function checkUser() {
     var criteria = new Criteria();
-    sendRequest("POST", "user?" + $.param(criteria), null, getUserSuccessHandler, getUserErrorHandler);
+    sendRequest("POST", "user/login?" + $.param(criteria), null, getUserSuccessHandler, getUserErrorHandler);
     // sendRequest("GET", "user?" + $.param(criteria), null, getUserSuccessHandler, getUserErrorHandler);
 }
 
@@ -24,9 +24,10 @@ function Criteria() {
 }
 
 function getUserSuccessHandler(respData) {
+    debugger;
     var rData = JSON.stringify(respData);
     if(rData){
-       goToPage('map.html')
+        goToPage('map.html')
     }else{
         goToPage('index.html')
     }

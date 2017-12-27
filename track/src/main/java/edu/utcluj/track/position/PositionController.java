@@ -39,16 +39,24 @@ public class PositionController {
     @RequestMapping(method = RequestMethod.GET)
     @Produces(MediaType.APPLICATION_JSON)
     public List<Position> readPositionFromTerminal(@RequestParam("terminalId") String terminalId , @RequestParam("startDate")String startDate, @RequestParam("endDate")String endDate) throws ParseException {
-//        LocalDateTimeConverter localDateTimeConverter = new LocalDateTimeConverter("yyyy-MM-dd HH:mm:ss");
-//
-//        LocalDateTime sdate = localDateTimeConverter.convert(startDate);
-//        LocalDateTime edate = localDateTimeConverter.convert(endDate);
+
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date stDate = simpleDateFormat.parse(startDate);
         Date enDate = simpleDateFormat.parse(endDate);
 
         return positionService.readPositionFromTerminal(terminalId,stDate,enDate);
     }
+
+    @RequestMapping(value = "/send",method = RequestMethod.POST)
+//    @Produces(MediaType.APPLICATION_JSON)
+    public Position putPosition(@RequestBody Position position) {
+//        p.setLatitude(latitude);
+//        p.setLongitude(longitude);
+//        p.setTerminalId(terminalId);
+       return positionService.save(position);
+
+    }
+
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     @Produces(MediaType.APPLICATION_JSON)

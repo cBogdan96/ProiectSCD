@@ -3,15 +3,14 @@ package edu.utcluj.track.user;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.swagger.annotations.ApiModelProperty;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * created by Covrig Bogdan
@@ -19,15 +18,16 @@ import java.util.Date;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue
     @ApiModelProperty(hidden = true)
     private Long id;
 
     @NotNull
-    @Column(name= "email")
+    @Column(name= "username")
     @Size(min = 4, message = " username must have at least 4 characters")
-    private String email;
+    private String username;
 
     @NotNull
     @Column(name= "password")
@@ -43,12 +43,12 @@ public class User {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -58,4 +58,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
 }

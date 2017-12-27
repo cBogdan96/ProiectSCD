@@ -26,7 +26,7 @@ public class Position {
 
     @NotNull
     @Column(name= "terminal_Id")
-    @Size(min = 3, max = 10, message = "terminalId must be between 5 and 10 characters long")
+    @Size(min = 3, message = "terminalId must be  at least 3 charaters")
     private String terminalId;
 
     @Column(name = "creation_time", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")

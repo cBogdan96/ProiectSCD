@@ -3,30 +3,30 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/coordonatesView"
-        android:text="Coordinates"
+    <EditText
+        android:id="@+id/emailLogin"
+        android:hint="username"
         android:textSize="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_margin="15dp"/>
+        android:layout_margin="10dp"
+        />
+    <EditText
+        android:id="@+id/passwordLogin"
+        android:hint="password"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="10dp"
+        />
 
     <Button
-        android:id="@+id/getGPS"
-        android:text="Get Positions"
+        android:id="@+id/loginButton"
+        android:text="Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
-
-    <Button
-        android:id="@+id/sendCoord"
-        android:text="Send Coordiantes"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"/>
-
-
-
 
 </LinearLayout>

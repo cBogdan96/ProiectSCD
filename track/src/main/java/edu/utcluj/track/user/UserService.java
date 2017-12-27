@@ -12,14 +12,14 @@ public class UserService {
     @Autowired
     UserRepository userRepository;
 
-    public User findByEmailAndPassword(String email, String password){
-        return userRepository.findByEmailAndPassword(email,password);
+    public User findByEmailAndPassword(String username, String password){
+        return userRepository.findByUsernameAndPassword(username,password);
     }
 
-    public User register(String email, String password) {
+    public User register(String username, String password) {
         User u = new User();
-        if(userRepository.findByEmail(email) == null) {
-            u.setEmail(email);
+        if(userRepository.findByUsername(username) == null) {
+            u.setUsername(username);
             u.setPassword(password);
             return userRepository.save(u);
         }else return null;
