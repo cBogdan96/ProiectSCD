@@ -1,5 +1,4 @@
 package edu.utcluj.track;
-
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 import edu.utcluj.track.position.LocalDateTimeConverter;
@@ -22,14 +21,13 @@ import java.util.Properties;
 
 @SpringBootApplication
 @EnableSwagger2
-//@EnableTransactionManagement
 public class TrackApplication extends WebMvcConfigurerAdapter {
 
     public static void main(String[] args) {
         SpringApplication.run(TrackApplication.class, args);
     }
 
-    @Bean
+    @Bean (name = "datasource")
     public DataSource dataSource() throws IOException {
         Properties dsProps = PropertiesLoaderUtils.loadAllProperties("datasource.properties");
         Properties hikariProps = PropertiesLoaderUtils.loadAllProperties("hikari.properties");
